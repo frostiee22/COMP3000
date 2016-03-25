@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define WordSize 199999
+#define WordSize 999
 
 
 /*  
