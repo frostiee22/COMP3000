@@ -6,7 +6,6 @@
 //
 
 
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -50,20 +49,13 @@ int main(){
 //bottom-top approach where max sum is at location 0,0
 void Compute(int * Data, int m, int n){
 	int i,j;	
-    for (i=m-1; i>=0;i--){
-    	for(j=n-1; j>=0;j--){
-    		if (*((Data+i*(n+1)) + j) == -1){
-    			*((Data+i*(n+1)) + j )= -1;
-			}
-			else{
-				int max = MAX(*((Data+i*(n+1)) + j+1) , *((Data+(i+1)*(n+1)) + j));
-				*((Data+i*(n+1)) + j) =  *((Data+i*(n+1)) + j) + max;	
-			}
-    	}
-	}
-	
-	printf("%d\n",*(Data));
-	
+    for (i=m-1; i>=0;i--)
+    	for(j=n-1; j>=0;j--)
+    		if (*((Data+i*(n+1)) + j) != -1){
+    		    int max = MAX(*((Data+i*(n+1)) + j+1) , *((Data+(i+1)*(n+1)) + j));
+    		    *((Data+i*(n+1)) + j) =  *((Data+i*(n+1)) + j) + max;
+    		}
+					
 	// pad data for printing
 	for(i=0;i<=m;i++)
 		*((Data+i*(n+1)) + n) = -1;
@@ -74,7 +66,9 @@ void Compute(int * Data, int m, int n){
 
 // recursive printing of path
 void printAnswer(int * Data, int m, int n,int i, int j){
+    if(i==0 && j==0) printf("%d\n",*(Data));
     if( (i==m-1) && (j==n-1) ) return;
+    
 	int east = *((Data+(i)*(n+1)) + (j+1));
 	int south = *((Data+(i+1)*(n+1)) + (j));
 	
